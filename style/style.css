@@ -1,0 +1,466 @@
+html,
+body {
+    margin: 0;
+    height: 100%;
+    background-color:#f2f2f2;
+
+}
+/*hide scroll bar*/
+body::-webkit-scrollbar { width: 0 !important; height: 0 !important; }
+
+/* Scale canvas with resize attribute to full size */
+canvas[resize] {
+    width:64vh;
+    height:80vh;
+}
+
+.wrapper{
+    width:119vw;
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content:center;
+
+}
+.flex-image{
+    width:auto;
+    height:100%;
+    align-self:center;
+    flex-basis:25%;
+    display:block;
+    margin:auto;
+}
+.frame{
+	width:64vh;
+	height:80vh;
+	border: 2px solid #045CC2;
+    margin:2.5vh;
+    overflow:hidden;
+}
+.frame1{
+    width:64vh;
+    height:80vh;
+    border: 2px solid #045CC2;
+    margin:2.5vh;
+    overflow:hidden;
+    position:relative;
+}
+.centerCanvas{
+    position:relative;
+    opacity:0;
+}
+#center{
+    position:absolute;
+    top:0;
+}
+.shop{
+    width:41.5vh;
+    position:relative;
+    left:10vh;
+    top:13.75vh;
+}
+
+#time{
+    font-family:"Garamond",serif;
+    font-size:2vw;
+    color:white;
+    line-height:0.8;
+}
+.date{
+    line-height:0.8;
+}
+.textCenter{
+    width:41.5vh;
+    position:relative;
+    left:10vh;
+    top:13.75vh;
+    z-index:4;
+}
+.title{
+    font-family: 'Orienta', sans-serif;
+    font-size:3.3vw;
+    color:#045CC2;
+}
+.paragraph{
+    font-family:'Garamond',serif;
+    font-size:2vw;
+    color:#045CC2;
+}
+.canvasButton{
+    font-family:'Garamond',serif;
+    font-size:2vw;
+    color:#045CC2;
+    display:inline;
+    text-decoration:underline;
+}
+.canvasButton:hover{
+    cursor:pointer;
+    color:white;
+    background-color:#045CC2;
+}
+
+#content1{
+    width:80%;
+    height:auto;
+    margin:0 auto;
+    padding:2vw;
+    position:relative;
+}
+#content2{
+    width:80%;
+    height:auto;
+    margin:0 auto;
+    padding:2vw;
+    position:relative;
+}
+#content3{
+    width:80%;
+    height:auto;
+    margin:0 auto;
+    padding:2vw;
+    position:relative;
+}
+#content5{
+    width:80%;
+    height:auto;
+    margin:0 auto;
+    padding:2vw;
+    position:relative;
+}
+#content6{
+    width:80%;
+    height:auto;
+    margin:0 auto;
+    padding:2vw;
+    position:relative;
+}
+#content7{
+    width:80%;
+    height:auto;
+    margin:0 auto;
+    padding:2vw;
+    position:relative;
+}
+.bookTitle{
+    font-family:'Orienta',sans-serif;
+    font-size:3vw;
+}
+#title1{
+    color:#045CC2;
+}
+#title2{
+    color:#f2f2f2;
+}
+.subInfo{
+    font-family:'Garamond',serif;
+    font-size:1.5vw;
+    position:relative;
+    width:30%;
+    height:15vw;
+}
+#subInfo1{
+    color:#045CC2;
+}
+#subInfo2{
+    color:#f2f2f2
+}
+.question{
+    text-align:left;
+    position:absolute;
+    left:0;
+    top:0;
+    display:block;
+}
+.answer{
+    text-align:right;
+    position:absolute;
+    right:-100%;
+    top:0;
+    display:block;
+    z-index:3;
+}
+.goods{
+    padding:1vh;
+}
+.out{
+    position:absolute;
+    bottom:8%;
+    right:12.5vh;
+    outline:none;
+    border:none;
+    color:#f2f2f2;
+    text-align:center;
+    font-family:'Garamond',serif;
+    font-size:1.5vw;
+    padding:2vw;
+    border-radius:50%;
+    cursor:pointer;
+    background-color:#EF4423;
+}
+.out:active{
+    background-color:#f2f2f2;
+    color:#045CC2;
+}
+.buybutton{
+    position:absolute;
+    bottom:-40%;
+    right:10%;
+    font-family:'Garamond',serif;
+    font-size:1.5vw;
+    padding:2vw;
+    border:none;
+    outline:none;
+    border-radius:50%;
+    cursor:pointer;
+}
+
+.button1{
+    background-color:#EF4423;
+    color:white;
+}
+.button1:active{
+	background-color:#045CC2;
+}
+.button2{
+    background-color:#f2f2f2;
+    color:#EF4423;
+    position:absolute;
+    bottom:-63%;
+}
+
+.button2:active{
+    background-color:#EF4423;
+    color:#f2f2f2;
+}
+.button3{
+    background-color:#EF4423;
+    color:white;
+    position:absolute;
+    bottom:-63%;
+}
+.button3:active{
+    background-color:#045CC2;
+}
+.button4{
+    background-color:#f2f2f2;
+    color:#EF4423;
+}
+.button4:active{
+	background-color:#EF4423;
+    color:#f2f2f2;
+}
+img{
+    background-size:cover;
+    background-position:center;
+}
+#image1{
+    background-color:#f2f2f2;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+   -webkit-transition:.5s;
+    transition:.5s;
+}
+#image1:hover{
+    cursor:pointer;
+    background-size:cover;
+    background-position:center;
+    background-image:url('assets/img01.jpg');
+}
+#image2{
+    background-color:#045CC2;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+   -webkit-transition:.5s;
+    transition:.5s;
+}
+#image2:hover{
+    cursor:pointer;
+    background-size:cover;
+    background-position:center;
+    background-image:url('assets/img02.png');
+}
+#image3{
+    background-color:#f2f2f2;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+   -webkit-transition:.5s;
+    transition:.5s;
+}
+#image3:hover{
+    cursor:pointer;
+    background-size:cover;
+    background-position:center;
+    background-image:url('assets/img03.jpg');
+}
+#shopping{
+    background-color:#045CC2;
+    position:relative;
+}
+.cart{
+    width:41.5vh;
+    position:relative;
+    left:10vh;
+    top:13.75vh;
+    font-family: 'Orienta', sans-serif;
+    font-size:3.3vw;
+    color:white;
+
+}
+.list{
+    position:relative;
+    left:10vh;
+    top:20vh;
+    font-family: 'Garamond', serif;
+    font-size:1.5vw;
+    color:white;
+    overflow:scroll;
+    overflow-wrap:break-word;
+    height:40%;
+    width:41.5vh;
+    border:1px solid #f2f2f2;
+    box-sizing:border-box;
+    padding:2vh;
+
+}
+.list::-webkit-scrollbar { width: 0 !important; height: 0 !important; }
+#image5{
+    background-color:#045CC2;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+   -webkit-transition:.5s;
+    transition:.5s;
+}
+#image5:hover{
+    cursor:pointer;
+    background-size:cover;
+    background-position:center;
+    background-image:url('assets/img04.jpg');
+}
+#image6{
+    background-color:#f2f2f2;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+   -webkit-transition:.5s;
+    transition:.5s;
+}
+#image6:hover{
+    cursor:pointer;
+    background-size:cover;
+    background-position:center;
+    background-image:url('assets/img06.jpg');
+}
+#image7{
+    background-color:#045CC2;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+   -webkit-transition:.5s;
+    transition:.5s;
+}
+#image7:hover{
+    cursor:pointer;
+    background-size:cover;
+    background-position:center;
+    background-image:url('assets/img07.jpg');
+}
+.visible{
+    opacity:100;
+}
+#nope{
+    background-image:none;
+}
+#nope2{
+    background-image:none;
+    background-color:#045CC2;
+}
+#introBlock{
+    background-color:#045CC2;
+    font-family: 'Orienta', sans-serif;
+    font-size:3.3vw;
+    color:white;
+}
+#cursor{
+    animation: blink 1s step-end infinite;
+}
+@keyframes blink{
+    50% { opacity:0; }
+}
+.type{
+    background:transparent;
+    font-family:"Garamond",serif;
+    font-size:2vw;
+    color:#045CC2;
+    width:50%;
+    margin-left:auto;
+    margin-right:auto;
+    position:absolute;
+    overflow-wrap:break-word;
+    top:20px;
+    left:30px;
+}
+::selection{
+    background-color:rgba(239, 68, 35, 1);
+    color:#f2f2f2;
+}
+button{
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none; 
+}
+@media (max-width:500px){
+    .frame{
+        height:50vh;
+    }
+    #time{
+        font-size:5vw;
+    }
+    .title{
+        font-size:8.25vw;
+    }
+    #introBlock{
+        font-size:8.25vw;
+    }
+    .paragraph{
+        font-size:5vw;
+    }
+    .canvasButton{
+        font-size:5vw;
+    }
+    .bookTitle{
+        font-size:7.5vw;
+    }
+    .subInfo{
+        font-size:3.75vw;
+    }
+    .out{
+        font-size:3.75vw;
+    }
+    .buybutton{
+        font-size:3.75vw;
+    }
+    .cart{
+        font-size:8.25vw;
+    }
+    .list{
+        font-size:3.75vw;
+    }
+    #introBlock{
+        font-size:8.25vw;
+    }
+    .type{
+        font-size:5vw;
+    }
+    .list{
+        height:25%;
+    }
+
+
+}

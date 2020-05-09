@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Blue Stockings</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orienta&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" type="image/png" href="assets/favicon.png" />
+    <link rel="stylesheet" href="./style/reset.css" />
+    <link rel="stylesheet" href="./style/style.css" />
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/moment.js"></script>
+    <script type="text/javascript" src="js/paper-full.js"></script>
+    <script type="text/javascript" src="js/notblob.js"></script>
+    <!--Oh boy here we go-->
+    <!--made with paper.js-->
+    <script type="text/paperscript" canvas="canvas">
+          var values = {
+              paths: 1,
+              minPoints: 3,
+              maxPoints: 7,
+              minRadius: 90,
+              maxRadius: 200
+          };
+
+          var hitOptions = {
+              segments: true,
+              stroke: true,
+              fill: true,
+              tolerance: 5
+          };
+
+          var colors = ['#0049FF', '#FFAFA5', '#EF4423','#FF9D00','#00984F','#8800FF'];
+
+          $(document).on("keypress",function(e){
+          createPaths();
+      })
+
+
+          function createPaths() {
+              var radiusDelta = values.maxRadius - values.minRadius;
+              var pointsDelta = values.maxPoints - values.minPoints;
+              for (var i = 0; i < values.paths; i++) {
+                  var radius = values.minRadius + Math.random() * radiusDelta;
+                  var points = values.minPoints + Math.floor(Math.random() * pointsDelta);
+                  var path = createBlob(view.size * Point.random(), radius, points);
+                  path.fillColor = colors[Math.floor(Math.random() * colors.length)];
+                  path.strokeColor = 'transparent';
+              $(document).on("keydown",function(e){
+          if (e.which == 8){
+          path.remove();
+      }
+      })
+              };
+          }
+
+          function createBlob(center, maxRadius, points) {
+              var path = new Path();
+              path.closed = true;
+              for (var i = 0; i < points; i++) {
+                  var delta = new Point({
+                      length: (maxRadius * 0.5) + (Math.random() * maxRadius * 0.5),
+                      angle: (360 / points) * i
+                  });
+                  path.add(center + delta);
+              }
+              path.smooth();
+              return path;
+          }
+
+          var segment, path;
+          var movePath = false;
+          function onMouseDown(event) {
+              segment = path = null;
+              var hitResult = project.hitTest(event.point, hitOptions);
+              if (!hitResult)
+                  return;
+
+              if (event.modifiers.shift) {
+                  if (hitResult.type == 'segment') {
+                      hitResult.segment.remove();
+                  };
+                  return;
+              }
+
+              if (hitResult) {
+                  path = hitResult.item;
+                  if (hitResult.type == 'segment') {
+                      segment = hitResult.segment;
+                  } else if (hitResult.type == 'stroke') {
+                      var location = hitResult.location;
+                      segment = path.insert(location.index + 1, event.point);
+                      path.smooth();
+                  }
+              }
+              movePath = hitResult.type == 'fill';
+              if (movePath)
+                  project.activeLayer.addChild(hitResult.item);
+          }
+
+          function onMouseMove(event) {
+              project.activeLayer.selected = false;
+              if (event.item)
+                  event.item.selected = true;
+          }
+
+          function onMouseDrag(event) {
+              if (segment) {
+                  segment.point += event.delta;
+                  path.smooth();
+              } else if (path) {
+                  path.position += event.delta;
+              }
+          }
+    </script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="frame" id="introBlock">
+        <div class="shop">
+          <span id="shoptitle">Bluestockings Cafe</span>
+          <div class="date"><span id="time"></span></div>
+        </div>
+      </div>
+      <div class="frame1">
+        <!--frame covers up the canvas and stops any click events so the text is in a separate div-->
+        <div class="textCenter">
+          <span class="title">Start by typing...<br /></span>
+          <span class="paragraph"
+            ><br />Your perspective matters.<br />Your story matters.<br />Help
+            others by donating your narrative.</span
+          >
+          <div class="canvasButton"><br /><br />Donate</div>
+        </div>
+        <div class="centerCanvas" id="center">
+          <canvas id="canvas" resize style="background: transparent;"></canvas>
+          <div class="type"><span id="cursor">|</span></div>
+        </div>
+      </div>
+      <div class="frame" id="shopping">
+        <div class="cart">Shopping Cart</div>
+        <div class="list"></div>
+        <button class="out">Check Out</button>
+      </div>
+      <!--Imagine if I had json lol-->
+      <div class="frame" id="image1">
+        <div class="content" id="content1">
+          <div class="bookTitle" id="title1">Open Sesame, Vol.1</div>
+          <div class="subInfo" id="subInfo1">
+            <div class="qustion">
+              <br />Publisher<br />City<br />Year<br />Pages<br />Cover<br />Binding<br />Color<br />Edition
+              Size<br />Stock ID
+            </div>
+            <div class="answer">
+              <br />Open Sesame<br />Beijing,China<br />2018<br />105 p.<br />Paperback<br />Sewn
+              Bound<br />Color<br />150<br />118103 C
+            </div>
+          </div>
+          <button class="buybutton button3" id="Une">$20.00</button>
+        </div>
+      </div>
+      <div class="frame" id="image2">
+        <div class="content" id="content2">
+          <div class="bookTitle" id="title2">TXL</div>
+          <div class="subInfo" id="subInfo2">
+            <div class="qustion">
+              <br />Publisher<br />City<br />Year<br />Pages<br />Cover<br />Binding<br />Color<br />Edition
+              Size<br />Stock ID
+            </div>
+            <div class="answer">
+              <br />S.Marx<br />Berlin,Germany<br />2019<br />26 p.<br />Paperback<br />Staple
+              Bound<br />Color<br />250<br />118086 C
+            </div>
+          </div>
+          <button class="buybutton button2" id="Deux">$20.00</button>
+        </div>
+      </div>
+      <div class="frame" id="image3">
+        <div class="content" id="content3">
+          <div class="bookTitle" id="title1">We Are All Things</div>
+          <div class="subInfo" id="subInfo1">
+            <div class="qustion">
+              <br />Publisher<br />City<br />Year<br />Pages<br />Cover<br />Binding<br />Color<br />Edition
+              Size<br />Stock ID
+            </div>
+            <div class="answer">
+              <br />Radix Media<br />Brooklyn,NY<br />2020<br />48 p.<br />Paperback<br />Staple
+              Bound<br />Monochrome<br />500<br />118190 C
+            </div>
+          </div>
+          <button class="buybutton button3" id="Trois">$12.00</button>
+        </div>
+      </div>
+
+      <div class="frame" id="image5">
+        <div class="content" id="content5">
+          <div class="bookTitle" id="title2">Good Trouble, Issue21</div>
+          <div class="subInfo" id="subInfo2">
+            <div class="qustion">
+              <br />Publisher<br />City<br />Year<br />Pages<br />Cover<br />Binding<br />Color<br />Edition
+              Size<br />Stock ID
+            </div>
+            <div class="answer">
+              <br />Good Trouble<br />New York,NY<br />2020<br />44 p.<br />Paperback<br />Folded<br />Color<br />2000<br />118134
+              B
+            </div>
+          </div>
+          <button class="buybutton button4" id="Quarte">$12.00</button>
+        </div>
+      </div>
+      <div class="frame" id="image6">
+        <div class="content" id="content6">
+          <div class="bookTitle" id="title1">Black Lives 1900</div>
+          <div class="subInfo" id="subInfo1">
+            <div class="qustion">
+              <br />Publisher<br />City<br />Year<br />Pages<br />Cover<br />Binding<br />Color<br />Edition
+              Size<br />Stock ID
+            </div>
+            <div class="answer">
+              <br />Redstone Press<br />London,UK<br />2020<br />144 p.<br />Hardback<br />Sewn
+              Bound<br />Color<br />1000<br />118128 D
+            </div>
+          </div>
+          <button class="buybutton button3" id="Cinq">$35.00</button>
+        </div>
+      </div>
+      <div class="frame" id="image7">
+        <div class="content" id="content7">
+          <div class="bookTitle" id="title2">Diario de Aztlán I</div>
+          <div class="subInfo" id="subInfo2">
+            <div class="qustion">
+              <br />Publisher<br />City<br />Year<br />Pages<br />Cover<br />Binding<br />Color<br />Edition
+              Size<br />Stock ID
+            </div>
+            <div class="answer">
+              <br />Gato Negro<br />Mexico City,Mexico<br />2019<br />96 p.<br />Paperback<br />Sewn
+              Bound<br />Color<br />2000<br />118126 D
+            </div>
+          </div>
+          <button class="buybutton button2" id="Six">$15.00</button>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  </body>
+</html>
