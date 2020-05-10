@@ -152,6 +152,9 @@ function createElement(k) {
     elem.before('<span class="inner">N</span>');
   }
   if (k == "O") {
+    elem.before('<span class="inner">O</span>');
+  }
+  if (k == "P") {
     elem.before('<span class="inner">P</span>');
   }
   if (k == "Q") {
